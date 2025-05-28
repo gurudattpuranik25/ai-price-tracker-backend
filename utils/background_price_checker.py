@@ -1,7 +1,5 @@
 from playwright.sync_api import sync_playwright
 import time
-import threading
-import pywhatkit
 from bson import ObjectId
 from app import mongo
 

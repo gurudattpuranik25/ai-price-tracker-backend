@@ -12,7 +12,7 @@ services:
     envVars:
       - key: FLASK_ENV
         value: production
-      - key: DL1B7rh8w8JQKZ7rQsBoQ6CzObc62I3A
-        value: your-secret-key
+      - key: SECRET_KEY
+        value: DL1B7rh8w8JQKZ7rQsBoQ6CzObc62I3A
       - key: MONGO_URI
         value: mongodb+srv://guruhp999:Nc8v6TTnZdelV9tl@cluster0.dvaujmk.mongodb.net/price_tracker?retryWrites=true&w=majority&appName=Cluster0

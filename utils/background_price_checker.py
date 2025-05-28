@@ -17,12 +17,10 @@ def get_price(url):
                 title = page.locator("span.VU-ZEz").text_content()
                 price_text = page.locator("div.Nx9bqj.CxhGGd").text_content()
                 price = int(price_text.replace("₹", "").replace(",", "").strip())
-                # image = page.locator("img#landingImage.a-dynamic-image.a-stretch-vertical").get_attribute("src")
             elif "amazon." in url:
                 title = page.locator("#productTitle.a-size-large.product-title-word-break").text_content().strip()
                 price_text = page.locator("span.a-price-whole").first.text_content().strip()
                 price = int(price_text.replace("₹", "").replace(",", "").replace(".", ""))
-                # image = page.locator("img.DByuf4.IZexXJ.jLEJ7H").get_attribute("src")
             else:
                 title = None
                 price = None
@@ -50,7 +48,6 @@ def price_check_worker():
                     if title and current_price:
                         print(f"Checked: {title} | Current: ₹{current_price} | Target: ₹{target_price}")
                         if current_price <= int(target_price):
-                            message = f"✅ Price dropped for {title}! ₹{current_price}. {url}"
                             try:
                                 sender = "guruhp999@gmail.com"
                                 app_password = "riwk imjq pytk ckop"
@@ -67,7 +64,6 @@ def price_check_worker():
                                 Happy shopping,
                                 DropWatch
                                 """
-                                #pywhatkit.sendwhatmsg_instantly(phone, message)
                                 send_email(sender, app_password, receiver, subject, body, is_html=False)
                                 mongo.db.products.delete_one({"_id": ObjectId(product["_id"])})
                                 print(f"🟢 Notification sent and product removed.")

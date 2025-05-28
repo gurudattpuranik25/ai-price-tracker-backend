@@ -11,7 +11,7 @@ services:
     repo: https://github.com/gurudattpuranik25/ai-price-tracker-backend
     envVars:
       - key: FLASK_ENV
-        value: production
+        value: development
       - key: SECRET_KEY
         value: DL1B7rh8w8JQKZ7rQsBoQ6CzObc62I3A
       - key: MONGO_URI

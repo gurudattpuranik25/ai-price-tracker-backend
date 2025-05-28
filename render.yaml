@@ -4,7 +4,7 @@ services:
     runtime: python
     buildCommand: |
       pip install -r requirements.txt
-      playwright install --with-deps
+      playwright install
     startCommand: python app.py
     env: python
     plan: free

@@ -7,7 +7,7 @@ services:
     env: python
     plan: free
     region: oregon
-    branch: main # Or your default Git branch
+    branch: master
     repo: https://github.com/gurudattpuranik25/AI-Price-Tracker/tree/master/backend
     envVars:
       - key: FLASK_ENV

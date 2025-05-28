@@ -7,6 +7,7 @@ click==8.2.1
 colorama==0.4.6
 cryptography==45.0.3
 dnspython==2.7.0
+dotenv==0.9.9
 Flask==3.1.1
 flask-cors==6.0.0
 Flask-PyMongo==3.0.1
@@ -28,6 +29,7 @@ PyMsgBox==1.0.9
 pyperclip==1.9.0
 PyRect==0.2.0
 PyScreeze==1.0.1
+python-dotenv==1.1.0
 pytweening==1.2.0
 pywhatkit==5.4
 requests==2.32.3

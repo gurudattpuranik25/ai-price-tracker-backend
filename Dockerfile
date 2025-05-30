@@ -1,11 +1,11 @@
-# Use official Python base image
+# Use official Python slim image
 FROM python:3.12-slim
 
-# Install system dependencies needed for Playwright (for Chromium)
+# Install Node.js (required by Playwright) and system dependencies for Chromium
 RUN apt-get update && apt-get install -y \
-    wget \
-    gnupg \
     curl \
+    gnupg \
+    wget \
     unzip \
     fonts-liberation \
     libnss3 \
@@ -21,23 +21,29 @@ RUN apt-get update && apt-get install -y \
     libpangocairo-1.0-0 \
     libpango-1.0-0 \
     libgtk-3-0 \
+    ca-certificates \
     && rm -rf /var/lib/apt/lists/*
 
-# Set work directory
+# Install Node.js (v18 LTS)
+RUN curl -fsSL https://deb.nodesource.com/setup_18.x | bash - \
+    && apt-get install -y nodejs \
+    && node -v && npm -v
+
+# Set working directory
 WORKDIR /app
 
-# Copy files
+# Copy application files
 COPY . /app
 
-# Install dependencies
+# Install Python dependencies
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 
-# Install Playwright browser binaries
+# Install Playwright browser (Chromium)
 RUN playwright install chromium
 
-# Expose port (for Flask)
+# Expose Flask port
 EXPOSE 5000
 
-# Start the app
+# Run Flask app
 CMD ["python", "app.py"]

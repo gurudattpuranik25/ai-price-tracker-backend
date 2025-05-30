@@ -1,7 +1,7 @@
 # Use official Python slim image
 FROM python:3.12-slim
 
-# Install Node.js (required by Playwright) and system dependencies for Chromium
+# Install Node.js and system dependencies for Playwright Chromium
 RUN apt-get update && apt-get install -y \
     curl \
     gnupg \
@@ -24,23 +24,21 @@ RUN apt-get update && apt-get install -y \
     ca-certificates \
     && rm -rf /var/lib/apt/lists/*
 
-# Install Node.js (v18 LTS)
-RUN curl -fsSL https://deb.nodesource.com/setup_18.x | bash - \
-    && apt-get install -y nodejs \
-    && node -v && npm -v
+# Install Node.js 18 (required by Playwright)
+RUN curl -fsSL https://deb.nodesource.com/setup_18.x | bash - && apt-get install -y nodejs
 
 # Set working directory
 WORKDIR /app
 
-# Copy application files
+# Copy all project files
 COPY . /app
 
 # Install Python dependencies
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 
-# Install Playwright browser (Chromium)
-RUN playwright install chromium
+# Install Playwright and Chromium browsers
+RUN npx playwright install --with-deps
 
 # Expose Flask port
 EXPOSE 5000

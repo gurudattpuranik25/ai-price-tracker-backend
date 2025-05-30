@@ -14,7 +14,9 @@ def create_app():
 
     app = Flask(__name__)
     # CORS(app, supports_credentials=True)
-    CORS(app, resources={r"/*": {"origins": ["http://localhost:5173", "https://price-tracker-backend-ftd1.onrender.com"]}}, supports_credentials=True)
+    # CORS(app, resources={r"/*": {"origins": ["http://localhost:5173", "https://price-tracker-backend-ftd1.onrender.com"]}}, supports_credentials=True)
+    CORS(app, resources={r"/*": {"origins": "*"}})  # Less secure but works for dev
+
 
     # Config
     app.config['MONGO_URI'] = MONGO_URI# JWT config
